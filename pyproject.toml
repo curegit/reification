@@ -1,0 +1,29 @@
+[project]
+name = "reification"
+description = "Lovely Spam! Wonderful Spam!"
+keywords = ["typing"]
+requires-python = ">=3.11"
+readme = "README.md"
+license = {text = "WTFPL"}
+maintainers = [
+  {name = "curegit", email = "contact@curegit.jp"}
+]
+classifiers = [
+  "Programming Language :: Python :: 3",
+  "Operating System :: OS Independent",
+  "Intended Audience :: Developers",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed",
+]
+dynamic = ["version"]
+
+[project.urls]
+homepage = "https://example.com"
+documentation = "https://readthedocs.org"
+repository = "https://github.com/me/spam.git"
+
+[build-system]
+requires = ["setuptools"]
+
+[tool.setuptools.dynamic]
+version = {attr = "reification.version"}
