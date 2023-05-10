@@ -1,7 +1,7 @@
 [project]
 name = "reification"
-description = "Lovely Spam! Wonderful Spam!"
-keywords = ["typing"]
+description = "Reified generics to get type parameters at runtime in Python"
+keywords = ["typing", "generics", "parametric polymorphism", "reification", "type parameter", "reflection"]
 requires-python = ">=3.11"
 readme = "README.md"
 license = {text = "WTFPL"}
@@ -18,9 +18,8 @@ classifiers = [
 dynamic = ["version"]
 
 [project.urls]
-homepage = "https://example.com"
-documentation = "https://readthedocs.org"
-repository = "https://github.com/me/spam.git"
+homepage = "https://github.com/curegit/reification"
+repository = "https://github.com/curegit/reification.git"
 
 [build-system]
 requires = ["setuptools"]
