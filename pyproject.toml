@@ -24,6 +24,7 @@ repository = "https://github.com/me/spam.git"
 
 [build-system]
 requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
 
 [tool.setuptools.dynamic]
 version = {attr = "reification.version"}
