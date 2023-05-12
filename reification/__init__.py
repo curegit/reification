@@ -1,3 +1,3 @@
 __version__ = "0.1.0"
 
-from reification.abs import Reific
+from reification.reific import Reific
