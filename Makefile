@@ -12,4 +12,4 @@ clean:
 	python3 -c 'import shutil; shutil.rmtree("reification.egg-info", ignore_errors=True)'
 
 test:
-	python3 -m unittest discover tests
+	python3 -m unittest discover -v tests
