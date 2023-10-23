@@ -5,3 +5,4 @@ T = TypeVar("T")
 
 class Stack(Reific[T]):
     pass
+

@@ -1,7 +1,27 @@
 import itertools
 from unittest import TestCase
 
-from reific_stack import Stack
+"""
+from reific_stack import CheckedStack
+from reific_dict import ReifiedDict
+
+class GetTypeTest(TestCase):
+
+
+    def test_stack():
+        types = [int, float, str, bool, list, list[int], dict[int, list[str]]]
+        Stack[]
+
+    def test_non_():
+        a = Stack()
+        assertError()
+
+
+    def test_dict
+
+
+    def test_dict_non
+
 
 class SubClassTest(TestCase):
 
@@ -17,7 +37,22 @@ class SubClassTest(TestCase):
                 else:
                     self.assertFalse(issubclass(l1, l2))
 
+    def test_union
+
+    def test_alias
 
 
 class InstanceTest:
-    pass
+
+    def test_list(self):
+        i = Stack[int]()
+        f = Stack[float]()
+        self.assertInstance(i, Stack[int])
+        self.assertInstance(i, Stack[int])
+        isinstance(i, )
+
+    def test_in():
+        i = Stack[int | str]()
+        f = Stack[float]()
+
+"""

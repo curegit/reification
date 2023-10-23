@@ -1,25 +1,23 @@
-import types
 from typing import Generic, TypeVarTuple, Any
+from .utils import get_type, tuplize_class_getitem_params
+
+
+
 
 Ts = TypeVarTuple("Ts")
 
-type_dict = {}
 
 class Reific(Generic[*Ts]):
 
-    def __class_getitem__(cls, key):
-        if key in type_dict:
-            return type_dict[key]
+    # TODO: Reified[Self]
+    def __class_getitem__(cls, params: Any) -> type[Self]:
 
-        #class r(cls):
-        #    pass
+        #
+        super().__class_getitem__(params)
 
-        reified = types.new_class(
-            name=cls.__name__,
-            bases=(cls,),
-            exec_body=(lambda ns: ns)
-        )
-        if isinstance(key, type):
-            reified.type_arg = key
-            type_dict[key] = reified
-        return reified
+        #
+        param_tuple = tuplize_class_getitem_params(params)
+        t = get_type(cls, param_tuple)
+        #
+        #t.key =
+        return t
