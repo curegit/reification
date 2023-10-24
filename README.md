@@ -1,12 +1,27 @@
-# Reification
+# Reification (Python library)
+
+
+```py
+from reification import Reified
+
+class ReifiedList[T](Reified): pass
+
+l = ReifiedList[int]([1, 2, 3])
+
+print(l.types) # int
+```
 
 ## Requirements
 
-Python >= 3.11
+Python >= 3.12
 
 Any non-builtin modules are NOT required.
 
 ## Install
+
+```sh
+pip3 install reification
+```
 
 ## Usage
 
