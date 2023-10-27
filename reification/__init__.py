@@ -1,20 +1,5 @@
-__version__ = "0.1.1"
+__version__ = "0.2.0"
 
-from .reify import reify
-from .reific import Reific
-from .reified import ReifiedType
+from .core import Reified
 
-__all__ = ["reify", "Reific", "ReifiedType"]
-
-
-
-#a: type[int] = bool
-#b: type[bool] = int #NG
-
-e: type[bool] = bool
-
-#c: type[bool] = a # NG
-d: type[int] = e #OK
-
-f: list[bool] = []
-m: list[int] = f
+__all__ = ["Reified"]
