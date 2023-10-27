@@ -1,21 +1,22 @@
 # Reification (Python library)
 
+Reified generics in Python to get type parameters at runtime
 
 ```py
 from reification import Reified
 
-class ReifiedList[T](Reified): pass
+class ReifiedList[T](Reified, list):
+    pass
 
-l = ReifiedList[int]([1, 2, 3])
-
-print(l.types) # int
+xs = ReifiedList[int]([1, 2, 3])
+print(xs.reified_type)  # <class 'int'>
 ```
 
 ## Requirements
 
 Python >= 3.12
 
-Any non-builtin modules are NOT required.
+This library is written in pure Python and any non-builtin modules are NOT required.
 
 ## Install
 
