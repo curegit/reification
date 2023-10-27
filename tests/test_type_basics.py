@@ -40,6 +40,10 @@ class BasicsTest(TestCase):
             def some(val: T) -> T:
                 return val
 
+        class C[T](B[T]):
+            pass
+
         self.assertFalse(issubclass(A, Generic))
         self.assertTrue(issubclass(B, Generic))
         self.assertLess(B.__mro__.index(B), B.__mro__.index(Generic))
+        self.assertLess(C.__mro__.index(B), C.__mro__.index(Generic))
