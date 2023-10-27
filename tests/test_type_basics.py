@@ -1,13 +1,9 @@
-from typing import TypeVar, Any
+import types
+from typing import Generic, Any
 from unittest import TestCase
 
 
-T = TypeVar("T")
-S = TypeVar("S")
-
-
-class Eqtest(TestCase):
-
+class BasicsTest(TestCase):
     def test_union(self):
         self.assertEqual(int | str, str | int)
         self.assertNotEqual(int | str, int)
@@ -24,6 +20,26 @@ class Eqtest(TestCase):
         self.assertEqual(Any, Any)
         self.assertNotEqual(list[int], list[Any])
 
-    def test_typevar(self):
+    def test_typevar[T, S](self):
         self.assertEqual(T, T)
         self.assertNotEqual(T, S)
+
+    def test_bases(self):
+        class X(list[str]):
+            pass
+
+        self.assertEqual(types.get_original_bases(X)[0], list[str])
+        self.assertNotEqual(types.get_original_bases(X)[0], list[int])
+        self.assertNotEqual(types.get_original_bases(X)[0], list)
+
+    def test_mro(self):
+        class A:
+            pass
+
+        class B[T](A):
+            def some(val: T) -> T:
+                return val
+
+        self.assertFalse(issubclass(A, Generic))
+        self.assertTrue(issubclass(B, Generic))
+        self.assertLess(B.__mro__.index(B), B.__mro__.index(Generic))
