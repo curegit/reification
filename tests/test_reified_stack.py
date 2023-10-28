@@ -38,3 +38,9 @@ class ReifiedStackTest(TestCase):
         stack.push("spam")
         with self.assertRaises(TypeError):
             stack.push(100)
+
+    def test_nested_type(self):
+        stack = ReifiedStack[ReifiedStack[int]]()
+        stack.push(ReifiedStack[int]())
+        with self.assertRaises(TypeError):
+            stack.push(ReifiedStack[str]())
