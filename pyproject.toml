@@ -1,8 +1,8 @@
 [project]
 name = "reification"
-description = "Reified generics to get type parameters at runtime in Python"
+description = "Reified generics in Python to get type parameters at runtime"
 keywords = ["typing", "generics", "parametric polymorphism", "reification", "type parameter", "reflection"]
-requires-python = ">=3.11"
+requires-python = ">=3.12"
 readme = "README.md"
 license = {text = "WTFPL"}
 maintainers = [
@@ -20,6 +20,9 @@ classifiers = [
   "Typing :: Typed",
 ]
 dynamic = ["version"]
+
+[project.optional-dependencies]
+dev = ["pip", "setuptools", "build", "twine", "black", "mypy"]
 
 [project.urls]
 homepage = "https://github.com/curegit/reification"
