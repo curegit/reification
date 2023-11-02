@@ -31,6 +31,8 @@ pip3 install reification
 
 `Reified` is a Mixin class designed to facilitate the creation of new types based on reified type parameters.
 
+This class is threadsafe so that inheriting classes can be used in multiple threads.
+
 You cannot instantiate this class directly.
 
 #### `targ: type | tuple[type | Any, ...] | Any` (class property)

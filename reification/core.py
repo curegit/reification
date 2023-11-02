@@ -14,7 +14,7 @@ class Reified:
         return super().__new__(cls, *args, **kwargs)
 
     # Return type should be inferred
-    def __class_getitem__(cls, params: Any):
+    def __class_getitem__(cls, params: type | tuple[type | Any, ...] | Any):
         # Prohibit from instantiating directly
         if cls is Reified:
             raise RuntimeError("Cannot instantiate 'Reified' class directly.")
