@@ -1,45 +1,31 @@
 import types
-from typing import TypeAlias, Any
-
-a: type = list
-b: type[int] = bool
-c: type[bool] = int
-
-d: tuple[int, str] = (1, "")
-
-#a: TypeAlias =
-#a: TypeAlias =
-
-type_dict: dict[tuple[type, tuple[type | Any]], type] = dict()
+from typing import Any
+from threading import RLock
 
 
-def get_type(base_cls: type[T], type_args: tuple[type | Any]) -> type[T]:
-    k = (base_cls, type_args)
-
-    if k in type_dict:
-        return type_dict[k]
-    else:
-        t = new_type(base_cls, type_args)
-        type_dict[k] = t
-        return t
-
-from typing import Protocol
-class RT(Protocol)
+_type_dict: dict[tuple[type, tuple[type | Any, ...]], type] = dict()
 
 
-def new_type(cls: type[T], params: tuple) -> type[Reified, T]:
-    #class ntype(base_cls):
-    #    typeargs = key
-    reified2 = types.new_class(
-        name=cls.__name__,
-        bases=(cls,),
-        exec_body=(lambda ns: ns)
-    )
+_lock = RLock()
 
+
+def get_reified_type[T](base_cls: type[T], type_args: tuple[type | Any, ...]) -> type[T]:
+    key = (base_cls, type_args)
+    with _lock:
+        if key in _type_dict:
+            return _type_dict[key]
+        else:
+            new_type = clone_type(base_cls, type_args)
+            _type_dict[key] = new_type
+            return new_type
+
+
+def clone_type[T](cls: type[T], type_args: tuple[type | Any, ...]) -> type[T]:
+    reified2 = types.new_class(name=cls.__name__ + str(type_args), bases=(cls,))
     return reified2
 
 
-def tuplize_class_getitem_params(params: Any) -> tuple:
+def tuplize_class_getitem_params(params: type | tuple[type | Any, ...] | Any) -> tuple[type | Any, ...]:
     if isinstance(params, tuple):
         return params
     else:
