@@ -19,7 +19,7 @@ print(xs.targ)  # <class 'int'>
 
 - Python >= 3.12
 
-This library is written in pure Python and does not require any non-builtin modules.
+This library is written in pure Python and does not require any external modules.
 
 ## Install
 
@@ -33,28 +33,28 @@ pip3 install reification
 
 `Reified` is a Mixin class designed to facilitate the creation of new types based on reified type parameters.
 
-This class is threadsafe so that inheriting classes can be used in multiple threads.
+This class is thread-safe so that inheriting classes can be used in multiple threads.
 
-You cannot instantiate this class directly.
+You cannot directly instantiate this class.
 
 #### `targ: type | tuple[type | Any, ...] | Any` (class property)
 
 This class property represents the type argument(s) specified for the reified generic class.
-If there's more than one type argument, `targ` will be a tuple containing each given type or type-like values.
-If type argument is not specified, it may return 'Any'.
+If there's more than one type argument, `targ` will be a tuple containing each given type or type-like value.
+If a type argument is not specified, it may return 'Any'.
 
 #### `type_args: tuple[type | Any, ...]` (class property)
 
 This is another class property that carries the type argument(s) provided for the reified generic class.
 Unlike `targ`, `type_args` always returns a tuple of the specified type arguments, even when there's only one type argument.
-If no type arguments are given, it may contain single 'Any'.
+If no type arguments are given, it may contain a single 'Any'.
 
 #### `__class_getitem__(cls, params: type | tuple[type | Any, ...] | Any) -> type` (special class method, for Mixin)
 
 This method, which the class overrides, is used for creating new types each time it is called with distinct type arguments.
 It serves a key role in handling parameterized generic classes, enabling the different identities on different type arguments of the same base class.
 
-## Example Usage: Type Checked Generic Stack
+## Example Usage: Type-Checked Generic Stack
 
 ```py
 from reification import Reified
@@ -177,10 +177,6 @@ True
 >>> issubclass(ReifiedTuple[bool], ReifiedTuple[int])
 False
 ```
-
-## Tips
-
-`typing_inspect`
 
 ## License
 
