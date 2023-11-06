@@ -29,7 +29,11 @@ pip3 install reification
 
 ## API
 
+The public API is defined under the root of the `reification` package.
+
 ### `Reified` (class)
+
+Usage: `from reification import Reified`
 
 `Reified` is a Mixin class designed to facilitate the creation of new types based on reified type parameters.
 
