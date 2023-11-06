@@ -180,4 +180,4 @@ False
 
 ## License
 
-[WTFPL](LICENSE)
+WTFPL
