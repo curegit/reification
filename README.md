@@ -41,13 +41,13 @@ You cannot directly instantiate this class.
 
 This class property represents the type argument(s) specified for the reified generic class.
 If there's more than one type argument, `targ` will be a tuple containing each given type or type-like value.
-If a type argument is not specified, it may return 'Any'.
+If a type argument is not specified, it may return `Any`.
 
 #### `type_args: tuple[type | Any, ...]` (class property)
 
 This is another class property that carries the type argument(s) provided for the reified generic class.
 Unlike `targ`, `type_args` always returns a tuple of the specified type arguments, even when there's only one type argument.
-If no type arguments are given, it may contain a single 'Any'.
+If no type arguments are given, it may contain a single `Any`.
 
 #### `__class_getitem__(cls, params: type | tuple[type | Any, ...] | Any) -> type` (special class method, for Mixin)
 
