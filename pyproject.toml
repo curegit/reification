@@ -32,5 +32,8 @@ repository = "https://github.com/curegit/reification.git"
 requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
+[tool.setuptools]
+packages = ["reification"]
+
 [tool.setuptools.dynamic]
 version = {attr = "reification.__version__"}
