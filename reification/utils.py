@@ -21,7 +21,8 @@ def get_reified_type[T](base_cls: type[T], type_args: tuple[type | Any, ...]) ->
 
 
 def clone_type[T](cls: type[T], type_args: tuple[type | Any, ...]) -> type[T]:
-    reified2 = types.new_class(name=cls.__name__ + str(type_args), bases=(cls,))
+    name = cls.__name__
+    reified2 = types.new_class(name=name + str(type_args), bases=(cls,))
     return reified2
 
 
