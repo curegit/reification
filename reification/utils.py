@@ -15,15 +15,15 @@ def get_reified_type[T](base_cls: type[T], type_args: tuple[type | Any, ...]) ->
         if key in _type_dict:
             return _type_dict[key]
         else:
-            new_type = clone_type(base_cls, type_args)
+            new_type = clone_type(base_cls)
             _type_dict[key] = new_type
             return new_type
 
 
-def clone_type[T](cls: type[T], type_args: tuple[type | Any, ...]) -> type[T]:
+def clone_type[T](cls: type[T]) -> type[T]:
     name = cls.__name__
-    reified2 = types.new_class(name=name + str(type_args), bases=(cls,))
-    return reified2
+    reified = types.new_class(name=name, bases=(cls,))
+    return reified
 
 
 def tuplize_class_getitem_params(params: type | tuple[type | Any, ...] | Any) -> tuple[type | Any, ...]:
