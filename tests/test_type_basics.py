@@ -37,7 +37,7 @@ class BasicsTest(TestCase):
             pass
 
         class B[T](A):
-            def some(val: T) -> T:
+            def some(self, val: T) -> T:
                 return val
 
         class C[T](B[T]):

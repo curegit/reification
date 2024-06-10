@@ -5,7 +5,7 @@ from reification import Reified
 
 
 class ReifiedClass[T](Reified):
-    def some(val: T) -> T:
+    def some(self, val: T) -> T:
         return val
 
 
