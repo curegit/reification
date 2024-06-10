@@ -58,6 +58,8 @@ If no type arguments are given, it may contain a single `Any`.
 This method, which the class overrides, is used for creating new types each time it is called with distinct type arguments.
 It serves a key role in handling parameterized generic classes, enabling the different identities on different type arguments of the same base class.
 
+Note: This custom method violates the convention that `__class_getitem__` should return an instance of `GenericAlias`.
+
 ## Example Usage: Type-Checked Generic Stack
 
 ```py
