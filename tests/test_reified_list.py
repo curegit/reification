@@ -12,6 +12,11 @@ class ReifiedListSub[T](ReifiedList[T]):
 
 
 class ReifiedListTest(TestCase):
+    def test_getitem(self):
+        l = ReifiedList[int]([1, 2, 3])
+        self.assertIsInstance(l[0], int)
+        self.assertEqual(l[1], 2)
+
     def test_type_args(self):
         ReifiedIntList = ReifiedList[int]
         self.assertEqual(ReifiedIntList.targ, int)
