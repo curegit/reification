@@ -36,7 +36,7 @@ class ReifiedDictTest(TestCase):
             dict[int, str],
             tuple[bool],
             tuple[int],
-            ReifiedDict[int],
+            ReifiedDict[int, float],
             type,
         ]
         for t1, t2, t3, t4 in itertools.product(types, repeat=4):
@@ -59,9 +59,9 @@ class ReifiedDictTest(TestCase):
             tuple[int],
             list[int],
             dict[int, str],
-            ReifiedDict[int],
-            ReifiedDict[ReifiedDict[int]],
-            ReifiedDict[ReifiedDict[dict[str, float]]],
+            ReifiedDict[int, int],
+            ReifiedDict[int, ReifiedDict[str, int]],
+            ReifiedDict[str, ReifiedDict[int, dict[str, float]]],
         ]
         for t1, t2, t3, t4 in itertools.product(types, repeat=4):
             with self.subTest(left=(t1, t2), right=(t3, t4)):
@@ -86,9 +86,9 @@ class ReifiedDictTest(TestCase):
             dict[int, str],
             tuple[bool],
             tuple[int],
-            ReifiedDict[int],
-            ReifiedDict[ReifiedDict[int]],
-            ReifiedDict[ReifiedDict[dict[str, float]]],
+            ReifiedDict[int, int],
+            ReifiedDict[ReifiedDict[int, int], int],
+            ReifiedDict[int, ReifiedDict[int, dict[str, float]]],
         ]
         for t1, t2, t3, t4 in itertools.product(types, repeat=4):
             with self.subTest(left=(t1, t2), right=(t3, t4)):
