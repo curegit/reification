@@ -28,4 +28,4 @@ check:
 	python3 -m mypy reification tests
 
 test:
-	python3 -m unittest discover -v tests
+	python3 -X dev -m unittest discover -v tests
