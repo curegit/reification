@@ -3,7 +3,10 @@ from .utils import get_reified_type, tuplize_class_getitem_params
 
 
 class Reified:
-    """Mixin class designed to facilitate the creation of new types based on reified type parameters"""
+    """
+    Mixin class designed to facilitate the creation of new types based on reified type parameters.
+    In most cases, this class should be placed before the normal generic class in the class inheritance list.
+    """
 
     targ: type | tuple[type | Any, ...] | Any = Any
     """
