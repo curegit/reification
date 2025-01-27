@@ -11,6 +11,10 @@ class ReifiedListSub[T](ReifiedList[T]):
     pass
 
 
+class BadReifiedList[T](list[T], Reified):
+    pass
+
+
 class ReifiedListTest(TestCase):
     def test_getitem(self):
         l = ReifiedList[int]([1, 2, 3])
@@ -112,3 +116,7 @@ class ReifiedListTest(TestCase):
                     self.assertTrue(issubclass(l1, l2))
                 else:
                     self.assertFalse(issubclass(l1, l2))
+
+    def test_mro_issue(self):
+        self.assertTrue(isinstance(ReifiedList[int], type))
+        self.assertFalse(isinstance(BadReifiedList[int], type))
