@@ -36,6 +36,7 @@ The public API is defined under the root of the `reification` package.
 Usage: `from reification import Reified`
 
 `Reified` is a Mixin class designed to facilitate the creation of new types based on reified type parameters.
+Mostly, you should put this mixin class earlier than normal generic class in your class inheritance definition because of the MRO issue.
 
 This class is thread-safe so that inheriting classes can be used in multiple threads.
 
