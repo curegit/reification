@@ -88,7 +88,7 @@ class ReifiedStack[T](Reified):
 
 stack = ReifiedStack[str]()
 stack.push("spam")  # OK
-stack.push(42)  # raise TypeError
+stack.push(42)  # raises TypeError
 ```
 
 The `ReifiedStack` class created here is generic and derived from the `Reified` base class, and implements a simple stack with `push` and `pop` methods.
