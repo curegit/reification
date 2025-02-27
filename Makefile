@@ -20,6 +20,8 @@ clean:
 	python3 -c 'import shutil; shutil.rmtree("build", ignore_errors=True)'
 	python3 -c 'import shutil; shutil.rmtree("reification.egg-info", ignore_errors=True)'
 	python3 -c 'import shutil; shutil.rmtree(".mypy_cache", ignore_errors=True)'
+	python3 -c 'import shutil; shutil.rmtree("htmlcov", ignore_errors=True)'
+	python3 -c 'import os, os.path; os.remove(".coverage") if os.path.isfile(".coverage") else None'
 
 format:
 	python3 -m black -l 200 reification tests
