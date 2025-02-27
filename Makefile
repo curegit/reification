@@ -1,4 +1,4 @@
-.PHONY: build install devinstall preview publish clean format check test
+.PHONY: build install devinstall preview publish clean format check test testcov
 
 build: clean
 	python3 -m build
