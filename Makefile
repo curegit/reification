@@ -29,3 +29,8 @@ check:
 
 test:
 	python3 -X dev -m unittest discover -v tests
+
+testcov:
+	python3 -m coverage run --branch -m unittest discover -v tests
+	python3 -m coverage report -m
+	python3 -m coverage html
