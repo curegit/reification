@@ -4,7 +4,8 @@ description = "Reified generics in Python to get type parameters at runtime"
 keywords = ["typing", "generics", "parametric polymorphism", "reification", "type parameter", "reflection"]
 requires-python = ">=3.12"
 readme = "README.md"
-license = {text = "WTFPL"}
+license = "WTFPL"
+license-files = ["LICEN[CS]E*"]
 maintainers = [
   {name = "curegit", email = "contact@curegit.jp"}
 ]
@@ -13,7 +14,6 @@ classifiers = [
   "Operating System :: OS Independent",
   "Intended Audience :: Developers",
   "Topic :: Software Development :: Libraries :: Python Modules",
-  "License :: Freeware",
   "Typing :: Typed",
 ]
 dynamic = ["version"]

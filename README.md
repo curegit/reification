@@ -189,3 +189,5 @@ False
 ## License
 
 WTFPL
+
+Copyright (C) 2023 curegit
