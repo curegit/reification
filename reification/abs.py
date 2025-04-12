@@ -1,4 +1,4 @@
-from typing import Any
+from typing import ClassVar, Any
 from .utils import get_reified_type, tuplize_class_getitem_params
 
 
@@ -8,7 +8,7 @@ class Reified:
     In most cases, this class should be placed before the normal generic class in the class inheritance list.
     """
 
-    targ: type | tuple[type | Any, ...] | Any = Any
+    targ: ClassVar[type | tuple[type | Any, ...] | Any] = Any
     """
     This class property represents the type argument(s) that were specified when the reified generic class was instantiated.
     If there is more than one type argument, `targ` will be a tuple containing each given type.
@@ -19,7 +19,7 @@ class Reified:
         If no type argument was given, `Any` will be returned.
     """
 
-    type_args: tuple[type | Any, ...] = (Any,)
+    type_args: ClassVar[tuple[type | Any, ...]] = (Any,)
     """
     This class property holds the type argument(s) provided for the reified generic class.
     Unlike `targ`, `type_args` always returns a tuple of the specified type arguments, even when there's only one type argument.
