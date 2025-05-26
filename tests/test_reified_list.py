@@ -118,5 +118,5 @@ class ReifiedListTest(TestCase):
                     self.assertFalse(issubclass(l1, l2))
 
     def test_mro_issue(self):
-        self.assertTrue(isinstance(ReifiedList[int], type))
-        self.assertFalse(isinstance(BadReifiedList[int], type))
+        self.assertIsInstance(ReifiedList[int], type)
+        self.assertNotIsInstance(BadReifiedList[int], type)
