@@ -19,14 +19,14 @@ classifiers = [
 dynamic = ["version"]
 
 [project.optional-dependencies]
-dev = ["pip", "setuptools", "build", "twine", "black", "mypy", "coverage"]
+dev = ["pip", "build", "twine", "black", "mypy", "coverage"]
 
 [project.urls]
 homepage = "https://github.com/curegit/reification"
 repository = "https://github.com/curegit/reification.git"
 
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools >= 78"]
 build-backend = "setuptools.build_meta"
 
 [tool.setuptools]
