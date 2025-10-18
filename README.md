@@ -24,7 +24,7 @@ This library is written in pure Python and does not require any external modules
 ## Install
 
 ```sh
-pip3 install reification
+pip install reification
 ```
 
 ## API
