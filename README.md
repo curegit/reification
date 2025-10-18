@@ -21,7 +21,7 @@ print(xs.targ)  # <class 'int'>
 
 This library is written in pure Python and does not require any external modules.
 
-## Install
+## Installation
 
 ```sh
 pip install reification
