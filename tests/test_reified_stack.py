@@ -1,11 +1,12 @@
+from collections.abc import Iterable
 from unittest import TestCase
 from reification import Reified
 
 
 class ReifiedStack[T](Reified):
-    def __init__(self) -> None:
+    def __init__(self, initial: Iterable[T] | None = None) -> None:
         super().__init__()
-        self.items: list[T] = []
+        self.items: list[T] = [] if initial is None else list(initial)
 
     def push(self, item: T) -> None:
         # We can do runtime check
@@ -23,15 +24,16 @@ class ReifiedStack[T](Reified):
 
 class ReifiedStackTest(TestCase):
     def test_type_args(self):
-        stack = ReifiedStack[int]()
+        stack = ReifiedStack[int]([1, 2, 3])
         self.assertIs(stack.targ, int)
 
     def test_ok(self):
-        stack = ReifiedStack[int]()
+        stack = ReifiedStack[int]([100])
         stack.push(10)
         stack.push(42)
         self.assertEqual(stack.pop(), 42)
         self.assertEqual(stack.pop(), 10)
+        self.assertEqual(stack.pop(), 100)
 
     def test_fail(self):
         stack = ReifiedStack[str]()

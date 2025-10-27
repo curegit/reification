@@ -30,17 +30,17 @@ class Reified:
         If no type argument was given, the returned tuple contains `Any`.
     """
 
-    def __new__(cls, *args, **kwargs):
+    def __init__(self, *args, **kwargs):
         # Prohibit from instantiating directly
-        if cls is Reified:
-            raise RuntimeError("Cannot instantiate 'Reified' class directly.")
-        return super().__new__(cls, *args, **kwargs)
+        if type(self) is Reified:
+            raise TypeError("Cannot instantiate 'Reified' class directly.")
+        super().__init__(*args, **kwargs)
 
     # Return type should be inferred
     def __class_getitem__(cls, params: type | tuple[type | Any, ...] | Any):
         # Prohibit from instantiating directly
         if cls is Reified:
-            raise RuntimeError("Cannot instantiate 'Reified' class directly.")
+            raise TypeError("Cannot instantiate 'Reified' class directly.")
         # Returns a separated reified type
         param_tuple = tuplize_class_getitem_params(params)
         rt = get_reified_type(cls, param_tuple)

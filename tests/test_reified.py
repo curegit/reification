@@ -25,9 +25,9 @@ class ReifiedTest(TestCase):
         self.assertIn(Reified, ReifiedSet[int].__mro__)
 
     def test_banned_instantiating(self):
-        with self.assertRaises(Exception):
+        with self.assertRaises(TypeError):
             Reified()
-        with self.assertRaises(Exception):
+        with self.assertRaises(TypeError):
             Reified[int]()
 
     def test_subclass(self):
