@@ -1,4 +1,4 @@
-.PHONY: build install devinstall preview publish clean format check test testcov
+.PHONY: build install devinstall preview publish clean format check test testcov docs
 
 build: clean
 	python3 -m build
@@ -21,6 +21,7 @@ clean:
 	python3 -c 'import shutil; shutil.rmtree("reification.egg-info", ignore_errors=True)'
 	python3 -c 'import shutil; shutil.rmtree(".mypy_cache", ignore_errors=True)'
 	python3 -c 'import shutil; shutil.rmtree("htmlcov", ignore_errors=True)'
+	python3 -c 'import shutil; shutil.rmtree("site", ignore_errors=True)'
 	python3 -c 'import os, os.path; os.remove(".coverage") if os.path.isfile(".coverage") else None'
 
 format:
@@ -36,3 +37,6 @@ testcov:
 	python3 -m coverage run --branch -m unittest discover -v tests
 	python3 -m coverage report -m
 	python3 -m coverage html
+
+docs:
+	python3 -m mkdocs build
