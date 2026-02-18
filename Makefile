@@ -1,4 +1,4 @@
-.PHONY: build install devinstall preview publish clean format check test testcov
+.PHONY: build install devinstall preview publish clean format check test testcov docs
 
 build: clean
 	python3 -m build
@@ -36,3 +36,8 @@ testcov:
 	python3 -m coverage run --branch -m unittest discover -v tests
 	python3 -m coverage report -m
 	python3 -m coverage html
+
+docs:
+	python3 -c 'import shutil; shutil.rmtree("docs/_build", ignore_errors=True)'
+	sphinx-apidoc . -f -o docs
+	@$(MAKE) -C docs html

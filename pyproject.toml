@@ -19,7 +19,7 @@ classifiers = [
 dynamic = ["version"]
 
 [project.optional-dependencies]
-dev = ["pip", "build", "twine", "black", "mypy", "coverage"]
+dev = ["pip", "build", "twine", "black", "mypy", "coverage", "sphinx", "sphinx_rtd_theme"]
 
 [project.urls]
 homepage = "https://github.com/curegit/reification"
