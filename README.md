@@ -1,5 +1,7 @@
 # Reification (Python library)
 
+[![Unit Tests](https://github.com/curegit/reification/actions/workflows/test.yml/badge.svg)](https://github.com/curegit/reification/actions/workflows/test.yml)
+
 Reified generics in Python to get type parameters at runtime
 
 ```py
