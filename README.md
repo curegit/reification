@@ -15,6 +15,8 @@ print(xs)  # [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 print(xs.targ)  # <class 'int'>
 ```
 
+See the detailed documentation at <https://curegit.github.io/reification/>.
+
 ## Requirements
 
 - Python >= 3.12
@@ -26,30 +28,6 @@ This library is written in pure Python and does not require any external modules
 ```sh
 pip install reification
 ```
-
-## API
-
-
-
-### `Reified` (class)
-
-
-
-`Reified` is a Mixin class designed to facilitate the creation of new types based on reified type parameters.
-Mostly, you should put this mixin class earlier than the normal generic class in your class inheritance definition because of the MRO issue.
-
-This class is thread-safe so that inheriting classes can be used in multiple threads.
-
-You cannot directly instantiate this class.
-
-
-
-#### `__class_getitem__(cls, params: type | tuple[type | Any, ...] | Any) -> type` (special class method, for Mixin)
-
-This method, which the class overrides, is used for creating new types each time it is called with distinct type arguments.
-It serves a key role in handling parameterized generic classes, enabling different identities for different type arguments of the same base class.
-
-Note: This custom method violates the convention that `__class_getitem__` should return an instance of `GenericAlias`.
 
 ## Example Usage: Type-Checked Generic Stack
 
@@ -91,6 +69,10 @@ However, when we try to push an integer `42`, a `TypeError` is raised because th
 
 This demonstrates the use of reified generics in Python where we can have runtime access to the type parameters, enabling us to type check dynamically at runtime.
 This is useful in situations where we need to enforce type safety in our code or use type information at runtime.
+
+## API
+
+See the full API reference at <https://curegit.github.io/reification/reference/>.
 
 ## License
 

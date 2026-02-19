@@ -27,7 +27,6 @@ This library is written in pure Python and does not require any external modules
 pip install reification
 ```
 
-
 ## License
 
 WTFPL
