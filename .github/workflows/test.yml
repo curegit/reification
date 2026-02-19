@@ -1,4 +1,4 @@
-name: Run unit tests
+name: Unit Tests
 
 on:
   push:
@@ -7,7 +7,7 @@ on:
   pull_request:
     branches:
       - master
-  workflow_dispatch:  # Allows manual triggering from the Actions tab
+  workflow_dispatch: # Allows manual triggering from the Actions tab
 
 permissions:
   contents: read
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python_version: ['3.12', '3.13', '3.14', '3.14t']
+        python_version: ["3.12", "3.13", "3.14", "3.14t"]
     steps:
       - name: Checkout
         uses: actions/checkout@v6
