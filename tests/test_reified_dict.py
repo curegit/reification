@@ -1,4 +1,5 @@
 import itertools
+from typing import Any
 from unittest import TestCase
 from reification import Reified
 
@@ -25,6 +26,11 @@ class ReifiedDictTest(TestCase):
         ds = ReifiedListDict()
         self.assertEqual(ds.targ, list[int])
         self.assertEqual(ds.type_args, (list[int],))
+
+    def test_default_type_args(self):
+        d = ReifiedDict()
+        self.assertEqual(d.targ, Any)
+        self.assertEqual(d.type_args, (Any,))
 
     def test_equivalence(self):
         types = [

@@ -1,4 +1,5 @@
 from collections.abc import Iterable
+from typing import Any
 from unittest import TestCase
 from reification import Reified
 
@@ -49,3 +50,8 @@ class ReifiedStackTest(TestCase):
         stack.push(ReifiedStack[int]())
         with self.assertRaises(TypeError):
             stack.push(ReifiedStack[str]())
+
+    def test_default_type_args(self):
+        stack = ReifiedStack()
+        self.assertEqual(stack.targ, Any)
+        self.assertEqual(stack.type_args, (Any,))

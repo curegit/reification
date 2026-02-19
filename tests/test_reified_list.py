@@ -1,4 +1,5 @@
 import itertools
+from typing import Any
 from unittest import TestCase
 from reification import Reified
 
@@ -34,6 +35,11 @@ class ReifiedListTest(TestCase):
         ls = ReifiedIntListSub()
         self.assertEqual(ls.targ, int)
         self.assertEqual(ls.type_args, (int,))
+
+    def test_default_type_args(self):
+        l = ReifiedList()
+        self.assertEqual(l.targ, Any)
+        self.assertEqual(l.type_args, (Any,))
 
     def test_typing(self):
         l = ReifiedList[int]()
