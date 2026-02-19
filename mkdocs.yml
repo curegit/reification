@@ -29,6 +29,8 @@ theme:
         name: Switch to system preference
 nav:
   - Home: index.md
+  - Examples: examples.md
+  - Typing: typing.md
   - Reference: reference.md
 repo_url: https://github.com/curegit/reification
 repo_name: curegit/reification
