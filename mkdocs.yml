@@ -1,4 +1,6 @@
 site_name: Reification
+site_author: curegit
+site_url: https://curegit.github.io/reification/
 theme:
   name: material
   palette:
