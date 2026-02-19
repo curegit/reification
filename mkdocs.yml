@@ -27,6 +27,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
+  features:
+    - content.code.copy
 nav:
   - Home: index.md
   - Examples: examples.md
@@ -48,3 +50,11 @@ plugins:
             show_root_heading: true
             docstring_section_style: list
             show_source: false
+markdown_extensions:
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.snippets
+  - pymdownx.superfences
