@@ -39,7 +39,7 @@ repo_name: curegit/reification
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/curegit/reification
+      link: https://github.com/curegit
 plugins:
   - search
   - mkdocstrings:
