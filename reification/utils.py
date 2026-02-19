@@ -2,7 +2,6 @@ import types
 from typing import Any
 from threading import RLock
 
-
 _type_dict: dict[tuple[type, tuple[type | Any, ...]], type] = dict()
 
 

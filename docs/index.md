@@ -26,3 +26,10 @@ This library is written in pure Python and does not require any external modules
 ```sh
 pip install reification
 ```
+
+
+## License
+
+WTFPL
+
+Copyright (C) 2023 curegit
