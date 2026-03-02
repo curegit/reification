@@ -6,13 +6,12 @@ class Reified:
     """Mixin class designed to facilitate the creation of new types based on reified type parameters.
     In most cases, this class should be placed before the normal generic class in the class inheritance list.
 
-    Example:
-        >>> from reification import Reified
-        >>> class ReifiedList[T](Reified, list[T]):
-        ...     pass
-        >>> xs = ReifiedList[int](range(10))
-        >>> xs.targ
-        <class 'int'>
+    >>> from reification import Reified
+    >>> class ReifiedList[T](Reified, list[T]):
+    ...     pass
+    >>> xs = ReifiedList[int](range(10))
+    >>> xs.targ
+    <class 'int'>
 
     Attributes:
         targ: The type argument(s) that were specified when the reified generic class was instantiated.
