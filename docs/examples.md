@@ -43,6 +43,8 @@ This is useful in situations where we need to enforce type safety in our code or
 
 ## Example Usage 2: Multi-Parameter Typed Registry
 
+This example demonstrates the use of **multiple type parameters** with `type_args`.
+
 ```py
 from reification import Reified
 
@@ -55,9 +57,13 @@ class TypedRegistry[K, V](Reified):
     def register(self, key: K, value: V) -> None:
         key_type, value_type = self.type_args
         if not isinstance(key, key_type):
-            raise TypeError(f"Key must be {key_type.__name__}, got {type(key).__name__}")
+            raise TypeError(
+              f"Key must be {key_type.__name__}, got {type(key).__name__}"
+            )
         if not isinstance(value, value_type):
-            raise TypeError(f"Value must be {value_type.__name__}, got {type(value).__name__}")
+            raise TypeError(
+              f"Value must be {value_type.__name__}, got {type(value).__name__}"
+            )
         self._store[key] = value
 
     def lookup(self, key: K) -> V:
@@ -72,5 +78,3 @@ registry.register("apples", 3)   # OK
 registry.register("bananas", 5)  # OK
 registry.register(42, "spam")    # raises TypeError (key must be str)
 ```
-
-This example demonstrates the use of **multiple type parameters** with `type_args`.
