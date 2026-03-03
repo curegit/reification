@@ -34,6 +34,7 @@ nav:
   - Examples: examples.md
   - Typing: typing.md
   - Reference: reference.md
+  - PyPI Page: https://pypi.org/project/reification/
 repo_url: https://github.com/curegit/reification
 repo_name: curegit/reification
 extra:
