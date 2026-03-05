@@ -22,7 +22,7 @@ dynamic = ["version"]
 dev = ["pip", "build", "pytest", "twine", "black", "pyright[nodejs]", "coverage", "mkdocs", "mkdocs-material", "mkdocstrings-python"]
 
 [project.urls]
-homepage = "https://github.com/curegit/reification"
+homepage = "https://curegit.github.io/reification/"
 repository = "https://github.com/curegit/reification.git"
 
 [build-system]
