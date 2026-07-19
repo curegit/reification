@@ -32,6 +32,11 @@ class ReifiedDictTest(TestCase):
         self.assertEqual(d.targ, Any)
         self.assertEqual(d.type_args, (Any,))
 
+    def test_class_getitem_tuple_notations(self):
+        c1 = ReifiedDict[int, str]
+        c2 = ReifiedDict[int, str]
+        self.assertIs(c1, c2)
+
     def test_equivalence(self):
         types = [
             int,
