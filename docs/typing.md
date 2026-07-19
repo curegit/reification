@@ -24,6 +24,27 @@ False
 
 This returns `False` because, while both objects are instances of the `ReifiedList` class, their type parameters are different (string vs integer).
 
+## Hashable Type Arguments
+
+All type arguments passed to a `Reified`-derived class must be hashable and must follow Python's normal hash contract: their hash value and equality must remain stable while they are used.
+Reified types use their type arguments as dictionary keys to cache the generated classes.
+
+`Annotated` is not treated specially.
+Its metadata is preserved as part of the type argument, so the metadata must also be hashable.
+Strings, tuples containing only hashable items, and frozen dataclass instances whose fields are hashable can be used normally.
+
+```py
+>>> from typing import Annotated
+>>> HashableInt = Annotated[int, ("unit", "ms")]
+>>> ReifiedList[HashableInt].targ == HashableInt
+True
+>>> UnhashableInt = Annotated[int, []]
+>>> ReifiedList[UnhashableInt]
+Traceback (most recent call last):
+    ...
+TypeError: Reified type arguments must be hashable.
+```
+
 ## Type Equivalence
 
 It treats two instances of the same `Reified`-derived class as equivalent only if the type parameters provided in their instantiation are exactly the same.

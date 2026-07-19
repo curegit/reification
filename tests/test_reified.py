@@ -1,4 +1,5 @@
 import itertools
+from typing import Annotated
 from unittest import TestCase
 from reification import Reified
 
@@ -59,6 +60,25 @@ class ReifiedTest(TestCase):
         self.assertIs(instance.targ, arg1)
         self.assertIs(c1.type_args[0], arg1)
         self.assertIs(instance.type_args[0], arg1)
+
+    def test_hashable_annotated_type_argument(self):
+        class LocalReifiedClass[T](Reified):
+            pass
+
+        annotated = Annotated[int, ("unit", "ms")]
+        reified = LocalReifiedClass[annotated]
+
+        self.assertIs(reified.targ, annotated)
+        self.assertIs(reified.type_args[0], annotated)
+
+    def test_unhashable_annotated_type_argument(self):
+        class LocalReifiedClass[T](Reified):
+            pass
+
+        annotated = Annotated[int, []]
+
+        with self.assertRaisesRegex(TypeError, r"^Reified type arguments must be hashable\.$"):
+            LocalReifiedClass[annotated]
 
     def test_subclass(self):
         types = [

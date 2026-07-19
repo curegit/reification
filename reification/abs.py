@@ -53,6 +53,13 @@ class Reified:
         It serves a key role in handling parameterized generic classes, enabling different identities for different type arguments of the same base class.
 
         Note that this custom method violates Python's convention that `__class_getitem__` should return an instance of `GenericAlias`.
+
+        All type arguments must be hashable and follow Python's normal hash contract so that they
+        can be used as stable cache keys. Typing constructs such as `Annotated` are not treated
+        specially; their metadata must therefore also be hashable.
+
+        Raises:
+            TypeError: If this class is `Reified` itself or any type argument is not hashable.
         """
         # Prohibit from instantiating directly
         if cls is Reified:

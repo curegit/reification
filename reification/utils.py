@@ -8,7 +8,15 @@ _type_dict: dict[tuple[type, tuple[type | Any, ...]], type] = dict()
 _lock = RLock()
 
 
+def _require_hashable_type_args(type_args: tuple[type | Any, ...]) -> None:
+    try:
+        hash(type_args)
+    except TypeError:
+        raise TypeError("Reified type arguments must be hashable.") from None
+
+
 def get_reified_type[T](base_cls: type[T], type_args: tuple[type | Any, ...]) -> type[T]:
+    _require_hashable_type_args(type_args)
     key = (base_cls, type_args)
     with _lock:
         if key in _type_dict:
