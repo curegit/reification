@@ -30,6 +30,12 @@ class ReifiedTest(TestCase):
         with self.assertRaises(TypeError):
             Reified[int]()
 
+    def test_class_getitem_tuple_notations(self):
+        c1 = ReifiedClass[int]
+        c2 = ReifiedClass[int,]
+        self.assertIs(c1.targ, int)
+        self.assertIs(c2.targ, int)
+
     def test_subclass(self):
         types = [
             int,

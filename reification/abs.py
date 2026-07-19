@@ -1,5 +1,5 @@
 from typing import ClassVar, Any
-from .utils import get_reified_type, tuplize_class_getitem_params
+from .utils import get_reified_type, canonicalize_class_getitem_params, tuplize_class_getitem_params
 
 
 class Reified:
@@ -52,8 +52,9 @@ class Reified:
         if cls is Reified:
             raise TypeError("Cannot instantiate 'Reified' class directly.")
         # Returns a separated reified type
-        param_tuple = tuplize_class_getitem_params(params)
+        params_canon = canonicalize_class_getitem_params(params)
+        param_tuple = tuplize_class_getitem_params(params_canon)
         rt = get_reified_type(cls, param_tuple)
-        rt.targ = params
+        rt.targ = params_canon
         rt.type_args = param_tuple
         return rt

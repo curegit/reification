@@ -25,6 +25,13 @@ def clone_type[T](cls: type[T]) -> type[T]:
     return reified
 
 
+def canonicalize_class_getitem_params(params: type | tuple[type | Any, ...] | Any) -> type | tuple[type | Any, ...] | Any:
+    if isinstance(params, tuple):
+        if len(params) == 1:
+            return params[0]
+    return params
+
+
 def tuplize_class_getitem_params(params: type | tuple[type | Any, ...] | Any) -> tuple[type | Any, ...]:
     if isinstance(params, tuple):
         return params
