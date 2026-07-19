@@ -34,8 +34,13 @@ class ReifiedDictTest(TestCase):
 
     def test_class_getitem_tuple_notations(self):
         c1 = ReifiedDict[int, str]
-        c2 = ReifiedDict[int, str]
+        c2 = ReifiedDict[
+            int,
+            str,
+        ]
         self.assertIs(c1, c2)
+        self.assertEqual(c1.targ, (int, str))
+        self.assertEqual(c2.type_args, (int, str))
 
     def test_equivalence(self):
         types = [

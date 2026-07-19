@@ -1,5 +1,5 @@
 from typing import ClassVar, Any
-from .utils import get_reified_type, canonicalize_class_getitem_params, tuplize_class_getitem_params
+from .utils import get_reified_type, tuplize_class_getitem_params
 
 
 class Reified:
@@ -17,8 +17,8 @@ class Reified:
     ```
 
     Attributes:
-        targ: The type argument(s) that were specified when the reified generic class was instantiated.
-        type_args: A tuple containing the type argument(s) provided for the reified generic class.
+        targ: The cached representative of the type argument(s) used to create the reified class.
+        type_args: A tuple containing the cached representative of the type arguments.
     """
 
     targ: ClassVar[type | tuple[type | Any, ...] | Any] = Any
@@ -26,6 +26,9 @@ class Reified:
 
     If there is more than one type argument, `targ` will be a tuple containing each given type.
     If no type argument is specified, `Any` will be returned.
+
+    Equivalent type arguments share the same reified class. This attribute is initialized when that
+    class is first created, so an equivalent later subscription does not replace the cached value.
     """
 
     type_args: ClassVar[tuple[type | Any, ...]] = (Any,)
@@ -33,6 +36,9 @@ class Reified:
 
     Unlike `targ`, `type_args` always returns a tuple of the specified type arguments,
     even when there's only one type argument. If no type arguments are given, it contains a single `Any`.
+
+    Equivalent type arguments share the same reified class. This attribute is initialized when that
+    class is first created, so an equivalent later subscription does not replace the cached value.
     """
 
     def __init__(self, *args, **kwargs):
@@ -52,9 +58,5 @@ class Reified:
         if cls is Reified:
             raise TypeError("Cannot instantiate 'Reified' class directly.")
         # Returns a separated reified type
-        params_canon = canonicalize_class_getitem_params(params)
-        param_tuple = tuplize_class_getitem_params(params_canon)
-        rt = get_reified_type(cls, param_tuple)
-        rt.targ = params_canon
-        rt.type_args = param_tuple
-        return rt
+        param_tuple = tuplize_class_getitem_params(params)
+        return get_reified_type(cls, param_tuple)

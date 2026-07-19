@@ -29,6 +29,10 @@ This returns `False` because, while both objects are instances of the `ReifiedLi
 It treats two instances of the same `Reified`-derived class as equivalent only if the type parameters provided in their instantiation are exactly the same.
 That is, `ReifiedClass[T, ...] == ReifiedClass[S, ...]` if and only if `(T, ...) == (S, ...)`.
 
+Equivalent type arguments reuse the same generated class.
+The class-level `targ` and `type_args` attributes are initialized when that class is first created and are not replaced by an equivalent later subscription.
+They therefore contain an equivalent cached representative, which is not necessarily the same object or spelling used by a later subscription.
+
 ```py
 >>> ReifiedList[float] == ReifiedList[float]
 True
@@ -42,6 +46,10 @@ False
 True
 >>> ReifiedList[ReifiedList[int]] == ReifiedList[ReifiedList[str]]
 False
+>>> ReifiedList[int] is ReifiedList[int,]
+True
+>>> ReifiedList[int,].targ is int
+True
 ```
 
 ## Subtyping

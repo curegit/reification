@@ -32,9 +32,33 @@ class ReifiedTest(TestCase):
 
     def test_class_getitem_tuple_notations(self):
         c1 = ReifiedClass[int]
+        instance = c1()
         c2 = ReifiedClass[int,]
+        self.assertIs(c1, c2)
         self.assertIs(c1.targ, int)
         self.assertIs(c2.targ, int)
+        self.assertIs(instance.targ, int)
+        self.assertEqual(instance.type_args, (int,))
+
+    def test_equivalent_type_args_do_not_replace_cached_metadata(self):
+        class LocalReifiedClass[T](Reified):
+            pass
+
+        arg1 = int | str
+        arg2 = str | int
+        self.assertEqual(arg1, arg2)
+        self.assertIsNot(arg1, arg2)
+
+        c1 = LocalReifiedClass[arg1]
+        instance = c1()
+        c2 = LocalReifiedClass[arg2]
+
+        self.assertIs(c1, c2)
+        self.assertIs(c1.targ, arg1)
+        self.assertIs(c2.targ, arg1)
+        self.assertIs(instance.targ, arg1)
+        self.assertIs(c1.type_args[0], arg1)
+        self.assertIs(instance.type_args[0], arg1)
 
     def test_subclass(self):
         types = [
