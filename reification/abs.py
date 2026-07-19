@@ -25,7 +25,8 @@ class Reified:
     """The type argument(s) that were specified when the reified generic class was instantiated.
 
     If there is more than one type argument, `targ` will be a tuple containing each given type.
-    If no type argument is specified, `Any` will be returned.
+    If a generic reified class is used without specifying its own type arguments, `Any` will be returned.
+    A non-generic subclass of a specialized reified class inherits the specialized value instead.
 
     Equivalent type arguments share the same reified class. This attribute is initialized when that
     class is first created, so an equivalent later subscription does not replace the cached value.
@@ -35,11 +36,21 @@ class Reified:
     """A tuple containing the type argument(s) provided for the reified generic class.
 
     Unlike `targ`, `type_args` always returns a tuple of the specified type arguments,
-    even when there's only one type argument. If no type arguments are given, it contains a single `Any`.
+    even when there's only one type argument. If a generic reified class is used without specifying
+    its own type arguments, it contains a single `Any`. A non-generic subclass of a specialized
+    reified class inherits the specialized tuple instead.
 
     Equivalent type arguments share the same reified class. This attribute is initialized when that
     class is first created, so an equivalent later subscription does not replace the cached value.
     """
+
+    def __init_subclass__(cls, **kwargs: Any) -> None:
+        super().__init_subclass__(**kwargs)
+        own_type_params = cls.__dict__.get("__type_params__", ())
+        own_parameters = cls.__dict__.get("__parameters__", ())
+        if own_type_params or own_parameters:
+            cls.targ = Any
+            cls.type_args = (Any,)
 
     def __init__(self, *args, **kwargs):
         # Prohibit from instantiating directly

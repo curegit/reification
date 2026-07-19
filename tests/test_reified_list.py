@@ -1,5 +1,5 @@
 import itertools
-from typing import Any
+from typing import Any, Generic, TypeVar
 from unittest import TestCase
 from reification import Reified
 
@@ -40,6 +40,38 @@ class ReifiedListTest(TestCase):
         l = ReifiedList()
         self.assertEqual(l.targ, Any)
         self.assertEqual(l.type_args, (Any,))
+
+        sub = ReifiedListSub()
+        self.assertEqual(sub.targ, Any)
+        self.assertEqual(sub.type_args, (Any,))
+
+    def test_default_type_args_for_specialized_base(self):
+        class FixedReifiedList(ReifiedList[int]):
+            pass
+
+        class GenericFromFixed[T](ReifiedList[int]):
+            pass
+
+        self.assertIs(FixedReifiedList().targ, int)
+        self.assertEqual(FixedReifiedList().type_args, (int,))
+        self.assertIs(GenericFromFixed().targ, Any)
+        self.assertEqual(GenericFromFixed().type_args, (Any,))
+        self.assertIs(GenericFromFixed[str]().targ, str)
+        self.assertEqual(GenericFromFixed[str]().type_args, (str,))
+
+    def test_default_type_args_for_legacy_generic(self):
+        T = TypeVar("T")
+
+        class LegacyBase(Reified, Generic[T]):
+            pass
+
+        class LegacySub(LegacyBase[T], Generic[T]):
+            pass
+
+        self.assertIs(LegacySub().targ, Any)
+        self.assertEqual(LegacySub().type_args, (Any,))
+        self.assertIs(LegacySub[int]().targ, int)
+        self.assertEqual(LegacySub[int]().type_args, (int,))
 
     def test_typing(self):
         l = ReifiedList[int]()

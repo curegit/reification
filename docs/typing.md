@@ -45,6 +45,30 @@ Traceback (most recent call last):
 TypeError: Reified type arguments must be hashable.
 ```
 
+## Unparameterized Generic Classes
+
+A generic `Reified`-derived class used without its own type arguments exposes `Any`, including when it inherits from another generic reified class.
+Once parameterized, it exposes the supplied argument.
+
+```py
+>>> from typing import Any
+>>> class ReifiedListSub[T](ReifiedList[T]):
+...     pass
+>>> ReifiedListSub().targ is Any
+True
+>>> ReifiedListSub[int]().targ is int
+True
+```
+
+A non-generic subclass of an already specialized reified class instead inherits that specialization.
+
+```py
+>>> class ReifiedIntList(ReifiedList[int]):
+...     pass
+>>> ReifiedIntList().targ is int
+True
+```
+
 ## Type Equivalence
 
 It treats two instances of the same `Reified`-derived class as equivalent only if the type parameters provided in their instantiation are exactly the same.
