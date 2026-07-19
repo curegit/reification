@@ -24,7 +24,7 @@ clean:
 	python3 -c 'import os, os.path; os.remove(".coverage") if os.path.isfile(".coverage") else None'
 
 format:
-	python3 -m black -l 200 reification tests
+	python3 -m black -l 200 --target-version py312 reification tests
 
 check:
 	python3 -m pyright reification
