@@ -123,6 +123,35 @@ False
 True
 ```
 
+### Generic Inheritance Limitation
+
+Type arguments supplied to a generic subclass are reified for that subclass only.
+They are not substituted into parameterized base classes.
+Consequently, generic inheritance through a type variable is not reflected in runtime subclass checks.
+
+```py
+>>> class ReifiedBase[T](Reified):
+...     pass
+>>> class ReifiedSub[T](ReifiedBase[T]):
+...     pass
+>>> ReifiedSub[int].type_args
+(<class 'int'>,)
+>>> issubclass(ReifiedSub[int], ReifiedBase[int])
+False
+```
+
+This differs from inheriting an already specialized reified class.
+A non-generic subclass directly inherits that specialization and remains its runtime subclass.
+
+```py
+>>> class ReifiedIntSub(ReifiedBase[int]):
+...     pass
+>>> ReifiedIntSub.type_args
+(<class 'int'>,)
+>>> issubclass(ReifiedIntSub, ReifiedBase[int])
+True
+```
+
 ### Type Variance
 
 The `Reified` Mixin only considers direct equivalence of type parameters for subtyping and does not account for type variance.
