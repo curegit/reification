@@ -59,6 +59,12 @@ class ReifiedListTest(TestCase):
         self.assertIs(GenericFromFixed[str]().targ, str)
         self.assertEqual(GenericFromFixed[str]().type_args, (str,))
 
+    def test_type_args_are_not_propagated_to_generic_base(self):
+        specialized_sub = ReifiedListSub[int]
+
+        self.assertEqual(specialized_sub.type_args, (int,))
+        self.assertFalse(issubclass(specialized_sub, ReifiedList[int]))
+
     def test_default_type_args_for_legacy_generic(self):
         T = TypeVar("T")
 
