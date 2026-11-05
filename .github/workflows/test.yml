@@ -25,7 +25,9 @@ jobs:
         uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python_version }}
-      - name: Run tests
+      - name: Install dependencies
         run: |
           make devinstall
+      - name: Run tests
+        run: |
           make test
